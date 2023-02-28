@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -27,11 +28,16 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
+
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
+    }
+
+    sourceSets {
+        test.resources.srcDirs += 'src/test/res'
     }
 }
 
@@ -40,9 +46,27 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.core:core-ktx:1.9.0'
 
-    //Navigation
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    // NAVIGATION
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
+    // RETROFIT
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    // RETROFIT SCALARS
+    //implementation "com.squareup.retrofit2:converter-scalars:2.9.0"
+
+    // MOSHI
+    implementation 'com.squareup.moshi:moshi-kotlin:1.9.3'
+    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+
+    //COIL PARA DESCARGAR IMAGENES
+    implementation "io.coil-kt:coil:2.2.2"
+
+    //MATERIAL DESIGN
     implementation 'com.google.android.material:material:1.7.0'
+
+    //TEST
+    testImplementation 'junit:junit:4.12'
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation "com.squareup.okhttp3:mockwebserver:4.9.1"
 }
